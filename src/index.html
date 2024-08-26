@@ -12,13 +12,17 @@
 <body>
     <main> <!--essa tag amin é a tag principal do conteúdo-->
         <h1>Sorteador</h1>
-        <form> <!--form sirgnifica formulário-->
+        <form class="form-sorteador"> <!--form sirgnifica formulário-->
             <div>
                 <label for="numero-maximo">Número Máximo</label>
-                <input type="number" id="numero-maximo">
+                <input type="number" id="numero-maximo" required min"2" value="2" step="1"> <!--o step é para dizer de quanto em quanto será incrementado-->
             </div>
             <button type="submit">Sortear número</button>
         </form>
+        <div class="resultado">
+            o número sorteado foi: <span id="resultado-valor"></span>
+        </div>
     </main>
+    <script src="@@ENDERECO_DO_JS"></script>
 </body>
 </html>

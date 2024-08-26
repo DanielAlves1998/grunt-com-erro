@@ -35,6 +35,10 @@ module.exports = function(grunt) {
                         {
                             match: 'ENDERECO_DO_CSS',
                             replacement: './styles/main.css'
+                        },
+                        {
+                            match: 'ENDERECO_DO_JS',
+                            replacement: '../src/scripts/main.js'
                         }
                     ]
                 },
@@ -53,6 +57,10 @@ module.exports = function(grunt) {
                         {
                             match: 'ENDERECO_DO_CSS',
                             replacement: './styles/main.min.css'
+                        },
+                        {
+                            match: 'ENDERECO_DO_JS',
+                            replacement: './src/scripts/main.min.js'
                         }
                     ]
                 },
@@ -77,7 +85,15 @@ module.exports = function(grunt) {
                 }
             }
         },
-        clean: ['prebuild'] //aqui se coloca a pasta que quer deletar
+        clean: ['prebuild'], //aqui se coloca a pasta que quer deletar
+                        //configuração do uglify
+        uglify: {
+            target: {
+                files: {
+                    'dist/script/main.min.js': 'src/scripts/main.js'
+                }
+            }
+        }
     })
 
     grunt.loadNpmTasks('grunt-contrib-less');
@@ -85,7 +101,8 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-replace');
     grunt.loadNpmTasks('grunt-contrib-htmlmin');
     grunt.loadNpmTasks('grunt-contrib-clean');
+    grunt.loadNpmTasks('grunt-contrib-uglify');
 
     grunt.registerTask('default', ['watch']); //aqui estou acessando a área de desenvolvimento
-    grunt.registerTask('build', ['less:production', 'htmlmin:dis', 'replace:dist', 'clean']); // e aqu a área de produção
+    grunt.registerTask('build', ['less:production', 'htmlmin:dis', 'replace:dist', 'clean', 'uglify']); // e aqu a área de produção
 }
